@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import twitterLogo from './assets/twitter-logo.svg';
 import './App.css';
 
@@ -6,6 +7,36 @@ const TWITTER_HANDLE = '_buildspace';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 const App = () => {
+  
+  
+  
+  onst checkIfWalletIsConnected = async () => {
+    try {
+      const { solana } = window;
+
+      if (solana.isPhantom) {
+        console.log('Phantom Wallet found!');
+      }
+    } else {
+      alert('Solana object not found! Get a Phantom Waller 👻');
+    }
+  } catch (error)
+  {
+    console.error(error);
+    }
+  };
+
+
+
+
+
+useEffect(() => {
+  const onLoad = async () => {
+    await checkIfWalletIsConnected();
+  };
+  window.addEventListener('load', onLoad);
+}, []);
+
   return (
     <div className="App">
       <div className="container">
